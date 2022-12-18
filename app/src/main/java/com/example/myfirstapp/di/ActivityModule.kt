@@ -10,7 +10,6 @@ import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
 
-
 @Module
 @InstallIn(ActivityComponent::class)
 object ActivityModule {
@@ -19,5 +18,4 @@ object ActivityModule {
     @Provides
     fun providesActivityMainBinding(@ActivityContext context: Context) =
         ActivityMainBinding.inflate((context as Activity).layoutInflater)
-
 }
