@@ -17,4 +17,11 @@ object AppModule {
     @Provides
     fun providesSharedPref(@ApplicationContext context: Context) =
         MyPref(context)
+
+
+    @Singleton
+    @Provides
+    fun providesConnectivityManager(@ApplicationContext context: Context) =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE)
+
 }

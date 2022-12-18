@@ -34,7 +34,6 @@ class MainActivity : BaseActivity() {
             list.add("what")
             list.add("computer")
 
-
             for (i in 0..10) {
                 list.add("Usman")
                 list.add("Khan")
@@ -43,8 +42,6 @@ class MainActivity : BaseActivity() {
                 list.add("what")
                 list.add("computer")
             }
-
-
 
             recView.layoutManager = LinearLayoutManager(context)
             recView.adapter = testAdapter
