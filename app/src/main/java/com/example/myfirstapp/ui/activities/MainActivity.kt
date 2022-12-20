@@ -1,9 +1,7 @@
 package com.example.myfirstapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myfirstapp.ui.adapters.TestAdapter
 import com.example.myfirstapp.databinding.ActivityMainBinding
 import com.example.myfirstapp.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,8 +14,6 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var binding: ActivityMainBinding
 
-    @Inject
-    lateinit var testAdapter: TestAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,28 +21,9 @@ class MainActivity : BaseActivity() {
 
         with(binding) {
 
-
-            val list = ArrayList<String>()
-            list.add("Usman")
-            list.add("Khan")
-            list.add("hello")
-            list.add("wrod")
-            list.add("what")
-            list.add("computer")
-
-            for (i in 0..10) {
-                list.add("Usman")
-                list.add("Khan")
-                list.add("hello")
-                list.add("wrod")
-                list.add("what")
-                list.add("computer")
+            btnRoomDb.setOnClickListener {
+                startActivity(Intent(mContext, RoomDbTestActivity::class.java))
             }
-
-            recView.layoutManager = LinearLayoutManager(context)
-            recView.adapter = testAdapter
-
-            testAdapter.initAdapter(list)
         }
 
 

@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recView"
+    <Button
+        android:id="@+id/btn_room_db"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/room_db_test"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

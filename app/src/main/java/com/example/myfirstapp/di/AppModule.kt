@@ -1,6 +1,10 @@
 package com.example.myfirstapp.di
 
 import android.content.Context
+import android.net.ConnectivityManager
+import androidx.room.Room
+import com.example.myfirstapp.data.room.WordDao
+import com.example.myfirstapp.data.room.db.WordRoomDatabase
 import com.example.myfirstapp.utils.MyPref
 import dagger.Module
 import dagger.Provides
@@ -21,7 +25,23 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesConnectivityManager(@ApplicationContext context: Context) =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE)
+    fun providesDataBase(@ApplicationContext context: Context): WordRoomDatabase =
+        Room.databaseBuilder(
+            context,
+            WordRoomDatabase::class.java,
+            "word_database"
+        ).allowMainThreadQueries().build()
+
+    @Singleton
+    @Provides
+    fun providesWordDao(wordRoomDatabase: WordRoomDatabase): WordDao =
+        wordRoomDatabase.wordDao()
+
+
+    @Singleton
+    @Provides
+    fun providesConnectivityManager(@ApplicationContext context: Context): ConnectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
 
 }

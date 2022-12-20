@@ -3,17 +3,28 @@ package com.example.myfirstapp.ui.adapters
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfirstapp.data.room.Word
 import com.example.myfirstapp.databinding.RowTestBinding
 import javax.inject.Inject
+
+
+interface DeleteListener {
+    fun onDelete(id:Int)
+}
 
 class TestAdapter @Inject constructor(
     var context: Activity
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var list = ArrayList<String>()
+    private var list = ArrayList<Word>()
+    private lateinit var deleteListener: DeleteListener
 
-    fun initAdapter(list: ArrayList<String>) {
+    fun initDeleteListener(deleteListener: DeleteListener){
+        this.deleteListener = deleteListener
+    }
+
+    fun initAdapter(list: ArrayList<Word>) {
         this.list = list
         notifyDataSetChanged()
     }
@@ -22,7 +33,7 @@ class TestAdapter @Inject constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return MyViewHolder(
-            RowTestBinding.inflate(context.layoutInflater, parent, false)
+            com.example.myfirstapp.databinding.RowTestBinding.inflate(context.layoutInflater, parent, false)
         )
     }
 
@@ -30,12 +41,23 @@ class TestAdapter @Inject constructor(
 
         val mHolder = holder as MyViewHolder
         with(mHolder.binding) {
-            tv.text = list[position]
+            tv.text = list[position].word
         }
 
     }
 
-    inner class MyViewHolder(val binding: RowTestBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MyViewHolder(val binding: RowTestBinding) : RecyclerView.ViewHolder(binding.root){
+
+        init {
+
+            binding.btnDelete.setOnClickListener {
+                val pos = adapterPosition
+                if (pos != -1) {
+                    deleteListener.onDelete(list[pos].id)
+                }
+            }
+        }
+    }
 
 
     override fun getItemCount(): Int {

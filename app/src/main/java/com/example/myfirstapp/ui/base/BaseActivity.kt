@@ -11,8 +11,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 open class BaseActivity : AppCompatActivity() {
 
-    lateinit var context: Activity
-
+    lateinit var mContext: Activity
 
     @Inject
     lateinit var pref: MyPref
@@ -23,6 +22,6 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        context = this
+        mContext = this
     }
 }

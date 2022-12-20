@@ -1,6 +1,5 @@
 package com.example.myfirstapp.utils
 
-import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -8,7 +7,6 @@ import javax.inject.Inject
 
 
 class InternetConnection @Inject constructor(private val connectivityManager: ConnectivityManager) {
-
 
     fun isInternetConnected(): Boolean {
 
