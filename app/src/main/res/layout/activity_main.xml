@@ -13,5 +13,12 @@
         android:text="@string/room_db_test"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_retrofit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/retrofit_test"
+        app:layout_constraintTop_toBottomOf="@+id/btn_room_db" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,9 @@ class MainActivity : BaseActivity() {
             btnRoomDb.setOnClickListener {
                 startActivity(Intent(mContext, RoomDbTestActivity::class.java))
             }
+            btnRetrofit.setOnClickListener {
+                startActivity(Intent(mContext, RetrofitTestActivity::class.java))
+            }
         }
 
 

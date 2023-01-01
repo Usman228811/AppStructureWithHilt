@@ -4,15 +4,15 @@ import android.app.Activity
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfirstapp.data.room.Word
-import com.example.myfirstapp.databinding.RowTestBinding
+import com.example.myfirstapp.databinding.RowRoomDbTestBinding
 import javax.inject.Inject
 
 
 interface DeleteListener {
-    fun onDelete(id:Int)
+    fun onDelete(id: Int)
 }
 
-class TestAdapter @Inject constructor(
+class RoomDbTestAdapter @Inject constructor(
     var context: Activity
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -20,7 +20,7 @@ class TestAdapter @Inject constructor(
     private var list = ArrayList<Word>()
     private lateinit var deleteListener: DeleteListener
 
-    fun initDeleteListener(deleteListener: DeleteListener){
+    fun initDeleteListener(deleteListener: DeleteListener) {
         this.deleteListener = deleteListener
     }
 
@@ -33,7 +33,7 @@ class TestAdapter @Inject constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return MyViewHolder(
-            com.example.myfirstapp.databinding.RowTestBinding.inflate(context.layoutInflater, parent, false)
+            RowRoomDbTestBinding.inflate(context.layoutInflater, parent, false)
         )
     }
 
@@ -46,7 +46,8 @@ class TestAdapter @Inject constructor(
 
     }
 
-    inner class MyViewHolder(val binding: RowTestBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class MyViewHolder(val binding: RowRoomDbTestBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
 

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfirstapp.data.room.Word
 import com.example.myfirstapp.data.room.WordViewModel
 import com.example.myfirstapp.ui.adapters.DeleteListener
-import com.example.myfirstapp.ui.adapters.TestAdapter
+import com.example.myfirstapp.ui.adapters.RoomDbTestAdapter
 import com.example.myfirstapp.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class RoomDbTestActivity : BaseActivity() {
     private val wordViewModel: WordViewModel by viewModels()
 
     @Inject
-    lateinit var testAdapter: TestAdapter
+    lateinit var roomDbTestAdapter: RoomDbTestAdapter
 
 
     @Inject
@@ -44,8 +44,8 @@ class RoomDbTestActivity : BaseActivity() {
             }
 
             recView.layoutManager = LinearLayoutManager(mContext)
-            recView.adapter = testAdapter
-            testAdapter.initDeleteListener(object :DeleteListener{
+            recView.adapter = roomDbTestAdapter
+            roomDbTestAdapter.initDeleteListener(object :DeleteListener{
                 override fun onDelete(id: Int) {
                     wordViewModel.deleteById(id)
                 }
@@ -53,7 +53,7 @@ class RoomDbTestActivity : BaseActivity() {
             })
 
             wordViewModel.allWords.observe(this@RoomDbTestActivity) {
-                testAdapter.initAdapter(it as ArrayList<Word>)
+                roomDbTestAdapter.initAdapter(it as ArrayList<Word>)
             }
         }
     }
